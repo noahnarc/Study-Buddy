@@ -6,7 +6,13 @@
   <body>
   <h1>My Google Login Project</h1>
   {% if user.is_authenticated %}
-  <p>Welcome, {{ user.username }} !</p>
+  <p>Welcome, {{ user.get_full_name }}!</p>
+  <ul>
+    <li>Email: {{ user.email }}</li>
+    <li>Bio: {{ user.profile.bio }}</li>
+    <li>Graduation Year: {{ user.profile.grad_year }}</li>
+    <li>Major: {{ user.profile.major }}</li>
+  </ul>
  
   {% else %}
   <a href="{% provider_login_url 'google' %}">Login with Google</a>
