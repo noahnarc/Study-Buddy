@@ -38,8 +38,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'study',    #adding for bootstrap config
+    'django.contrib.sites',
+    
+    # google login config
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+  
+    # bootstrap config
+     'study', 
 ]
+
+SITE_ID = 1
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '1099147276488-6j3pbteuta88fkjnsr18je4k8l8ssgk0.apps.googleusercontent.com',
+            'secret': '0A0gfIyz0WNGUFc4SlCobj_w',
+            'key': ''
+        }
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,6 +74,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'StudyBuddy.urls'
