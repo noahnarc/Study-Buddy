@@ -37,14 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     
+    # bootstrap config
+     'study', 
+
     # google login config
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-  
-    # bootstrap config
-     'study', 
 ]
 
 SITE_ID = 1
@@ -101,7 +101,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates'  # adding for bootstrap config
+            BASE_DIR / 'templates',  # adding for bootstrap config
         ],
         'APP_DIRS': True,
         'OPTIONS': {
