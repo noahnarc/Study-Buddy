@@ -16,7 +16,6 @@ import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -28,9 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +50,16 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_SIGNUP_FORM_CLASS = 'study.forms.SignupForm'
+
+SOCIALACCOUNT_STORE_TOKENS = True
+SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_QUERY_EMAIL = True
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
@@ -64,11 +71,11 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
-        'APP': {
-            'client_id': '1099147276488-6j3pbteuta88fkjnsr18je4k8l8ssgk0.apps.googleusercontent.com',
-            'secret': '0A0gfIyz0WNGUFc4SlCobj_w',
-            'key': ''
-        }
+        # 'APP': {
+        #     'client_id': '1099147276488-6j3pbteuta88fkjnsr18je4k8l8ssgk0.apps.googleusercontent.com',
+        #     'secret': '0A0gfIyz0WNGUFc4SlCobj_w',
+        #     'key': ''
+        # }
     }
 }
 
@@ -164,3 +171,4 @@ STATIC_URL = '/static/'
 
 
 django_heroku.settings(locals())
+
