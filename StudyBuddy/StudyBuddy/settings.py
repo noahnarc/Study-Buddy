@@ -69,11 +69,11 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
-        # 'APP': {
-        #     'client_id': '1099147276488-6j3pbteuta88fkjnsr18je4k8l8ssgk0.apps.googleusercontent.com',
-        #     'secret': '0A0gfIyz0WNGUFc4SlCobj_w',
-        #     'key': ''
-        # }
+        'APP': {
+            'client_id': '1099147276488-6j3pbteuta88fkjnsr18je4k8l8ssgk0.apps.googleusercontent.com',
+            'secret': '0A0gfIyz0WNGUFc4SlCobj_w',
+            'key': ''
+        }
     }
 }
 
