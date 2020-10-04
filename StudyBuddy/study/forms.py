@@ -3,7 +3,7 @@ Forms
 """
 
 from django import forms
-import django.contrib.auth as auth
+from django.contrib.auth.models import User
 from .models import Profile
 
 
@@ -19,7 +19,7 @@ class SignupForm(forms.Form):
 
 class UserForm(forms.ModelForm):
     class Meta:
-        model = auth.get_user_model()
+        model = User
         fields = ('first_name', 'last_name')
 
 
