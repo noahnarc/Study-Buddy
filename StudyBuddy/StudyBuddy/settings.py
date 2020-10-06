@@ -123,13 +123,11 @@ WSGI_APPLICATION = 'StudyBuddy.wsgi.application'
 
 DATABASES = {
 
-"""     
-    # SQLite
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-"""
+    # # SQLite
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 
     # PostgreSQL
     'default': {
