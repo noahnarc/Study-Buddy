@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'study/bootstrap.css' %}">
+    <title>
+        Study Budddy 1-06
+    </title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h2 class="mt-2">
+            {% block class_name %}
+            StudBud Homepage
+            {% endblock %}
+            </h2>
+          <hr class="mt-0 mb-4">
+          {% block content %}
+          Congrats! You've made a homepage.
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+</html>
