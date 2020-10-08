@@ -8,7 +8,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: 
+    secure: bc33204a-ed89-44f3-a60e-dba6bd3a8b57
   app: team-1-06
   on:
     repo: projecy-1-06/StudyBuddy/StudyBuddy
