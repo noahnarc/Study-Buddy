@@ -1,0 +1,14 @@
+language: python
+python:
+- '3.8'
+install:
+- pip install -r requirements-travis.txt
+script:
+- python manage.py test
+deploy:
+  provider: heroku
+  api_key:
+    secure: 
+  app: team-1-06
+  on:
+    repo: projecy-1-06/StudyBuddy/StudyBuddy
