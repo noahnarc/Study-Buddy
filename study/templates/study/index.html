@@ -1,10 +1,16 @@
+{% extends "study/base.html" %}
+
+{% block class_name %}
+Study Buddy
+{% endblock %}
+
+{% block content %}
 {% load socialaccount %}
 <html>
   <head>
     <title>Google Registration</title>
   </head>
   <body>
-  <h1>My Google Login Project</h1>
   {% if user.is_authenticated %}
   <p>Welcome, {{ user.get_full_name }}!</p>
   <ul>
@@ -20,3 +26,4 @@
 
   </body>
 </html>
+{% endblock %}
