@@ -23,6 +23,9 @@ class Profile(models.Model):
     student_id = models.CharField('Student ID', max_length=10, blank=True)
     groups = models.ManyToManyField('StudyGroup')
 
+    def __str__(self):
+        return self.user.email
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -40,3 +43,9 @@ class StudyGroup(models.Model):
     group_name = models.CharField(max_length=50)
     topic_course = models.CharField(max_length=20)
     members = models.ManyToManyField(User)
+
+    class Meta:
+        verbose_name = 'Study Group'
+
+    def __str__(self):
+        return self.group_name
