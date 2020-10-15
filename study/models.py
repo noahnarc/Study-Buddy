@@ -12,10 +12,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     YEAR_CHOICES = [
-        ('4', '2021'),
-        ('3', '2022'),
-        ('2', '2023'),
-        ('1', '2024'),
+        ('2021', '2021'),
+        ('2022', '2022'),
+        ('2023', '2023'),
+        ('2024', '2024'),
     ]
     grad_year = models.CharField('Graduation Year',max_length=30, choices=YEAR_CHOICES, blank=True)
     major = models.CharField(max_length=50, blank=True)
