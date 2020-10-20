@@ -4,7 +4,7 @@ python:
 install:
 - pip install -r requirements-travis.txt
 script:
-- python3 manage.py test
+- python manage.py test
 deploy:
   provider: heroku
   api_key:
