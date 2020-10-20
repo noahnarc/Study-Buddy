@@ -11,14 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
-# Try to import django-heroku depending on Travis or Heroku
-try:
-    # Configure Django App for Heroku.
-    import django_heroku
-    django_heroku.settings(locals())
-except:
-    None
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -185,5 +178,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-django_heroku.settings(locals())
+# Configure Django App for Heroku.
+django_heroku.settings(locals(), test_runner=False)
