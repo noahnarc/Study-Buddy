@@ -1,0 +1,25 @@
+{% extends "study/base.html" %}
+
+{% block class_name %}
+Study Groups
+{% endblock %}
+
+
+{% block content %}
+<div class="pb-5">
+<form action="{% url 'study:search' %}" method="get">
+    <input name = "q" class="form-control" type="text" placeholder="Search" aria-label="Search">
+</form>
+</div>
+
+<div class="pb-5">
+<ul class="list-group"> 
+  {% for group in object_list %}
+    <li class = "list-group-item">
+        <h6 class="mb-1">{{ group.group_name }}</h6>
+        <small>Topic: {{ group.topic_course }}</small>
+    </li>
+  {% endfor %}
+</ul>
+</div>
+{% endblock %}

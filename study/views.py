@@ -2,12 +2,14 @@
 Views
 """
 
+from django.views.generic import TemplateView, ListView
 from django.shortcuts import render, redirect
 from django.contrib import  messages
 from django.db import transaction
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, ProfileForm
-
+from .models import StudyGroup
 
 def index(request):
     return render(request, 'study/base.html')
@@ -29,7 +31,7 @@ def update_profile(request):
             user_form.save()
             profile_form.save()
             messages.success(request, ('Your profile was successfully updated!'))
-            return redirect('profile')
+            return redirect('study:profile')
         else:
             messages.error(request, ('Please correct the error below.'))
     else:
@@ -39,3 +41,18 @@ def update_profile(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
+
+
+class SearchResultsView(ListView):
+    model = StudyGroup
+    template_name = 'study/search_results.html'
+    
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            object_list = StudyGroup.objects.filter(
+                Q(group_name__icontains=query) | Q(topic_course__icontains=query)
+            )
+        else:
+            object_list = StudyGroup.objects.all()
+        return object_list
