@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserForm, ProfileForm
 from .models import StudyGroup
 
+
 def index(request):
     return render(request, 'study/base.html')
 
@@ -32,6 +33,7 @@ def update_profile(request):
             profile_form.save()
             messages.success(request, ('Your profile was successfully updated!'))
             return redirect('study:profile')
+
         else:
             messages.error(request, ('Please correct the error below.'))
     else:
@@ -41,8 +43,6 @@ def update_profile(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
-
-
 class SearchResultsView(ListView):
     model = StudyGroup
     template_name = 'study/search_results.html'
@@ -56,3 +56,4 @@ class SearchResultsView(ListView):
         else:
             object_list = StudyGroup.objects.all()
         return object_list
+

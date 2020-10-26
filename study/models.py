@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
+
     YEAR_CHOICES = [
         ('2021', '2021'),
         ('2022', '2022'),
@@ -27,6 +28,7 @@ class Profile(models.Model):
         return self.user.email
 
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -36,6 +38,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
 
 
 class StudyGroup(models.Model):
@@ -49,3 +52,4 @@ class StudyGroup(models.Model):
 
     def __str__(self):
         return self.group_name
+

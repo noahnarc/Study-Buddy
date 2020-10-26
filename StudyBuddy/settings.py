@@ -123,6 +123,7 @@ WSGI_APPLICATION = 'StudyBuddy.wsgi.application'
 
 DATABASES = {
 
+
     # # SQLite
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -138,6 +139,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
         }
+
 }
 
 # Password validation
