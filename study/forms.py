@@ -27,3 +27,4 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('bio', 'grad_year', 'major', 'student_id')
+
