@@ -8,7 +8,7 @@ from django.contrib import  messages
 from django.db import transaction
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm, ProfileForm
+from .forms import UserForm, ProfileForm, StudyGroupForm
 from .models import StudyGroup
 
 def index(request):
@@ -56,3 +56,18 @@ class SearchResultsView(ListView):
         else:
             object_list = StudyGroup.objects.all()
         return object_list
+
+def create_group(request):
+    context = {}
+    if request.method == 'POST':
+        group_form = StudyGroupForm(request.POST)
+        if group_form.is_valid():
+            group = group_form.save(commit=False)
+            group.save()
+            return render(request, "study/created_group.html", context)
+    else: 
+        group_form = StudyGroupForm()
+        context = {
+            'group_form':group_form,
+        }
+        return render(request, "study/create_group.html" ,context)

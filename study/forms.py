@@ -4,7 +4,7 @@ Forms
 
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, StudyGroup
 
 
 class SignupForm(forms.Form):
@@ -28,3 +28,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('bio', 'grad_year', 'major', 'student_id')
 
+class StudyGroupForm(forms.ModelForm):
+    class Meta:
+        model = StudyGroup
+        fields = ('id', 'group_name', 'topic_course', 'members')
