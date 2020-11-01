@@ -15,6 +15,9 @@ from .models import StudyGroup
 def index(request):
     return render(request, 'study/base.html')
 
+def group(request):
+    return render(request, 'study/group.html')
+
 # def update_profile(request, user_id):
 #     user = auth.get_user_model().objects.get(pk=user_id)
 #     user.profile.bio = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...'
@@ -62,5 +65,5 @@ class CreateGroup(CreateView):
     model = StudyGroup
     form_class = GroupForm
     template_name = 'study/create_group.html'
-    success_url = 'search'
+    success_url = 'group'
     
