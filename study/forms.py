@@ -4,7 +4,7 @@ Forms
 
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, StudyGroup
 
 
 class SignupForm(forms.Form):
@@ -28,3 +28,23 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('bio', 'grad_year', 'major', 'student_id')
 
+
+class CustomMMCF(forms.ModelMultipleChoiceField):
+    # Custom labels for the Multiple Choice field selections -- eventually change to student IDs?
+    def label_from_instance(self, User):
+        return "%s" % User.email
+
+class GroupForm(forms.ModelForm):
+    # Form that allows users to create a new group and select group members
+    class Meta:
+        model = StudyGroup
+        fields = ("group_name", "topic_course", "members")
+    
+    group_name = forms.CharField(max_length=50)
+    topic_course = forms.CharField(max_length=20)
+
+    members = CustomMMCF(
+        queryset=User.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )   
+    
