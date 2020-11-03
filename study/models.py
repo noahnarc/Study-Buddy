@@ -40,7 +40,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 class StudyGroup(models.Model):
     id = models.AutoField(primary_key=True)
-    group_name = models.CharField(max_length=50)
+    group_name = models.CharField(max_length=50, unique=True, blank=False)
     topic_course = models.CharField(max_length=20)
     members = models.ManyToManyField(User)
 
