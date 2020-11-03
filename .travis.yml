@@ -1,0 +1,14 @@
+language: python
+python:
+- '3.8'
+install:
+- pip install -r requirements-travis.txt
+script:
+- python manage.py test
+deploy:
+  provider: heroku
+  api_key:
+    secure: bc33204a-ed89-44f3-a60e-dba6bd3a8b57
+  app: team-1-06
+  on:
+    repo: uva-cs3240-f20/project-1-06
