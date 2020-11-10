@@ -8,5 +8,17 @@
 {% endblock %}
 
 {% block content %}
-You created a group!
+<div class="pb-3">
+    <ul>
+        <p>Topic Course: {{ studygroup.topic_course }}</p>
+        Members:
+        {% for members in studygroup.members.all %}
+        <ul>
+        <li class=> 
+            {{ members }} 
+        </li>
+        </ul>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %} 
