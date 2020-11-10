@@ -21,19 +21,19 @@ Study Buddy
     </ul>
     
     <p>
-    <button onclick="window.location.href='/study/search';">View Groups</button> 
-    <button onclick="window.location.href='/study/create-group';">Create Group</button> 
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/search';">View Groups</button> 
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/create-group';">Create Group</button> 
     </p>
   
     <p>
-    <button onclick="window.location.href='/study/profile';">Edit Profile</button>
-    <button onclick="window.location.href='/accounts/password/change/';">Change Password</button>
-    <button onclick="window.location.href='/accounts/logout/';">Logout</button>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/study/profile';">Edit Profile</button>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/accounts/password/change/';">Change Password</button>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/accounts/logout/';">Logout</button>
     </p>
   
  
   {% else %}
-    <a href="{% provider_login_url 'google' %}">Login with Google</a>
+  <a class="btn btn-secondary" href="{% provider_login_url 'google' %}" role="button">Login with Google</a>
   {% endif %}
 
   </body>

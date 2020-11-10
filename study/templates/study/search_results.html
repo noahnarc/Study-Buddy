@@ -16,7 +16,7 @@ Study Groups
 <ul class="list-group"> 
   {% for group in object_list %}
     <li class = "list-group-item">
-        <dl><a href="{% url 'study:group' group.id %}">{{ group.group_name }}</a></dl>
+        <div><a href="{% url 'study:group' group.id %}">{{ group.group_name }}</a></div>
         <small>Topic: {{ group.topic_course }}</small>
     </li>
   {% endfor %}
