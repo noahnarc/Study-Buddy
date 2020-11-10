@@ -22,6 +22,13 @@ class GroupView(DetailView):
     def get_queryset(self):
         return StudyGroup.objects.all()
 
+class GroupMeView(DetailView):
+    model = StudyGroup
+    template_name = 'study/group_message.html'
+
+    def get_queryset(self):
+        return StudyGroup.objects.all()
+
 @login_required
 @transaction.atomic
 def update_profile(request):
@@ -64,4 +71,3 @@ class CreateGroup(CreateView):
     form_class = GroupForm
     template_name = 'study/create_group.html'
     success_url = 'search'
-    

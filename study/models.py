@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 
+from groupy.client import Client
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -49,3 +50,13 @@ class StudyGroup(models.Model):
 
     def __str__(self):
         return self.group_name
+
+    def groupme_create(self):
+        return_messages = ""
+        token = "GSTVyt66iVgWWj45IVAlXv5LLegUcSuLSyRMfBgP"
+        client = Client.from_token(token)
+        group_me = client.groups.create(name=self.group_name)
+        success = 'GroupMe Created!'
+        message = group_me.post(text=success)
+        return success
+
