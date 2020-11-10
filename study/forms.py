@@ -26,7 +26,7 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'grad_year', 'major', 'student_id')
+        fields = ('bio', 'grad_year', 'major', 'student_id', 'courses')
 
 
 class CustomMMCF(forms.ModelMultipleChoiceField):
@@ -47,4 +47,3 @@ class GroupForm(forms.ModelForm):
         queryset=User.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )   
-    

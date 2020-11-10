@@ -11,6 +11,8 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, ProfileForm, GroupForm
 from .models import StudyGroup
+from taggit.models import Tag
+
 
 class IndexView(View):
     template_name = 'study/base.html'
@@ -31,6 +33,14 @@ def update_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            newuser = user_form.save(commit=False)
+            newuser.user = request.user
+            newuser.save()
+            user_form.save_m2m()
+            newprof = profile_form.save(commit=False)
+            newprof.user = request.user
+            newprof.save()
+            profile_form.save_m2m()
             messages.success(request, ('Your profile was successfully updated!'))
             return redirect('study:profile')
         else:

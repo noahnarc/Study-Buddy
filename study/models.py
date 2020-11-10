@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 
 class Profile(models.Model):
@@ -22,6 +23,7 @@ class Profile(models.Model):
     schedule = models.TextField(max_length=500, blank=True)
     student_id = models.CharField('Student ID', max_length=10, blank=True)
     groups = models.ManyToManyField('StudyGroup')
+    courses = TaggableManager("Courses", "ex: CS1110, ECON1010")  
 
     def __str__(self):
         return self.user.email
@@ -43,6 +45,7 @@ class StudyGroup(models.Model):
     group_name = models.CharField(max_length=50, unique=True, blank=False)
     topic_course = models.CharField(max_length=20)
     members = models.ManyToManyField(User)
+    tags = TaggableManager()
 
     class Meta:
         verbose_name = 'Study Group'
