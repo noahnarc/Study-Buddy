@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     
+    # searchable select
+    'searchableselect',
+    
     # bootstrap config
      'study', 
 
