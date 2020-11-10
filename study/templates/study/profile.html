@@ -10,16 +10,18 @@ Update Profile
     {% csrf_token %}
     {{ user_form.as_p }}
     {{ profile_form.as_p }}
-    <button type="submit">Save changes</button>
+    <button class="btn btn-primary" type="submit">Save Changes</button>
 </form>
 </div>
-
-<div class="pb-3">
+<div class = "pb-3">
+    <a class="btn btn-secondary" href="/" role="button">Back to Home</a>
+</div>
+<div class="pb-5">
 {% if messages %}
     {% for message in messages %}
         <div>{{ message }}</div>
     {% endfor %}
-    <a href="/">Go back to Profile</a>
 {% endif %}
 </div>
+
 {% endblock %}

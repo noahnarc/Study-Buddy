@@ -8,7 +8,6 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
@@ -46,9 +45,13 @@ class StudyGroup(models.Model):
     topic_course = models.CharField(max_length=20)
     members = models.ManyToManyField(User)
     tags = TaggableManager()
+    groupme_option = models.BooleanField("Create GroupMe?", default=False, blank=False)    # Does the user want to generate a group message?
+    groupme_id = models.CharField(max_length=100)                       # Unique identifier provided by API
+    groupme_url = models.CharField(max_length=100)                      # Unique share URL provided by API
 
     class Meta:
         verbose_name = 'Study Group'
 
     def __str__(self):
         return self.group_name
+

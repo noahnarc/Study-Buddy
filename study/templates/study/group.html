@@ -1,12 +1,26 @@
 {% extends "study/base.html" %}
 
 {% block class_name %}
-<h5>
+<h2>
     {% csrf_token %}
     {{ studygroup.group_name }}
-</h5>
+</h2>
 {% endblock %}
 
 {% block content %}
-You created a group!
+<div class="pb-3">
+<h5>Topic</h5>
+<div>{{studygroup.topic_course}}</div>
+</div>
+<div class="pb-5">
+    <ul class="list-group"> 
+    <h5>Members</h5>
+      {% for member in studygroup.members.all %}
+        <li class = "list-group-item">
+        {{ member.get_full_name }}
+        </li>
+      {% endfor %}
+    </ul>
+    </div>
+<a class="btn btn-success" href="{{ studygroup.groupme_url }}" target="_blank">Join GroupMe</a>
 {% endblock %} 
