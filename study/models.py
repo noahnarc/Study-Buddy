@@ -42,9 +42,9 @@ class StudyGroup(models.Model):
     group_name = models.CharField(max_length=50, unique=True, blank=False)
     topic_course = models.CharField(max_length=20)
     members = models.ManyToManyField(User)
-    groupme_option = models.BooleanField(default=False, blank=False)   # Does the user want to generate a group message?
-    groupme_id = models.CharField(max_length=100)          # Unique identifier provided by API
-    groupme_url = models.CharField(max_length=100)          # Unique share URL provided by API
+    groupme_option = models.BooleanField("Create GroupMe?", default=False, blank=False)    # Does the user want to generate a group message?
+    groupme_id = models.CharField(max_length=100)                       # Unique identifier provided by API
+    groupme_url = models.CharField(max_length=100)                      # Unique share URL provided by API
 
     class Meta:
         verbose_name = 'Study Group'
