@@ -18,6 +18,11 @@ Study Buddy
       <li>Bio: {{ user.profile.bio }}</li>
       <li>Graduation Year: {{ user.profile.grad_year }}</li>
       <li>Major: {{ user.profile.major }}</li>
+      <li>Courses:
+      {%for tag in user.profile.courses.all %}
+      <button onclick="window.location.href='/study/search?q='+'{{tag.name}}';">{{ tag.name }}</button> 
+      {% endfor %}
+      </li>
     </ul>
     
     <p>

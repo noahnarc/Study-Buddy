@@ -2,4 +2,5 @@ Django
 gunicorn
 django-allauth
 django-heroku
+django-taggit
 GroupyAPI
