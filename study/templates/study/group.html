@@ -1,0 +1,12 @@
+{% extends "study/base.html" %}
+
+{% block class_name %}
+<h5>
+    {% csrf_token %}
+    {{ studygroup.group_name }}
+</h5>
+{% endblock %}
+
+{% block content %}
+You created a group!
+{% endblock %} 

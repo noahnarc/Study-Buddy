@@ -2,24 +2,25 @@
 Views
 """
 
-from django.views.generic import TemplateView, ListView
-from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, ListView, CreateView, View, DetailView
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.contrib import  messages
 from django.db import transaction
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm, ProfileForm
+from .forms import UserForm, ProfileForm, GroupForm
 from .models import StudyGroup
 
-def index(request):
-    return render(request, 'study/base.html')
+class IndexView(View):
+    template_name = 'study/base.html'
 
+class GroupView(DetailView):
+    model = StudyGroup
+    template_name = 'study/group.html'
 
-# def update_profile(request, user_id):
-#     user = auth.get_user_model().objects.get(pk=user_id)
-#     user.profile.bio = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...'
-#     user.save()
-
+    def get_queryset(self):
+        return StudyGroup.objects.all()
 
 @login_required
 @transaction.atomic
@@ -56,3 +57,11 @@ class SearchResultsView(ListView):
         else:
             object_list = StudyGroup.objects.all()
         return object_list
+
+
+class CreateGroup(CreateView):
+    model = StudyGroup
+    form_class = GroupForm
+    template_name = 'study/create_group.html'
+    success_url = 'search'
+    
