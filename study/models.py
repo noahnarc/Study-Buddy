@@ -7,8 +7,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 
-from groupy.client import Client
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
@@ -44,19 +42,13 @@ class StudyGroup(models.Model):
     group_name = models.CharField(max_length=50, unique=True, blank=False)
     topic_course = models.CharField(max_length=20)
     members = models.ManyToManyField(User)
+    groupme_option = models.BooleanField(default=False, blank=False)   # Does the user want to generate a group message?
+    groupme_id = models.CharField(max_length=100)          # Unique identifier provided by API
+    groupme_url = models.CharField(max_length=100)          # Unique share URL provided by API
 
     class Meta:
         verbose_name = 'Study Group'
 
     def __str__(self):
         return self.group_name
-
-    def groupme_create(self):
-        return_messages = ""
-        token = "GSTVyt66iVgWWj45IVAlXv5LLegUcSuLSyRMfBgP"
-        client = Client.from_token(token)
-        group_me = client.groups.create(name=self.group_name)
-        success = 'GroupMe Created!'
-        message = group_me.post(text=success)
-        return success
 
