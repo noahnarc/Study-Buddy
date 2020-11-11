@@ -14,26 +14,31 @@ Study Buddy
   {% if user.is_authenticated %}
     <p>Welcome, {{ user.get_full_name }}!</p>
     <ul>
-      <li>Email: {{ user.email }}</li>
-      <li>Bio: {{ user.profile.bio }}</li>
-      <li>Graduation Year: {{ user.profile.grad_year }}</li>
-      <li>Major: {{ user.profile.major }}</li>
+      <li class = "pb-3"><b>Email: </b>{{ user.email }}</li>
+      <li class = "pb-3"><b>Bio: </b>{{ user.profile.bio }}</li>
+      <li class = "pb-3"><b>Graduation Year: </b>{{ user.profile.grad_year }}</li>
+      <li class = "pb-3"><b>Major: </b>{{ user.profile.major }}</li>
+      <li class = "pb-3"><b>Courses: </b>
+      {%for tag in user.profile.courses.all %}
+      <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.location.href='/study/search?q='+'{{tag.name}}';">{{ tag.name }}</button> 
+      {% endfor %}
+      </li>
     </ul>
     
     <p>
-    <button onclick="window.location.href='/study/search';">View Groups</button> 
-    <button onclick="window.location.href='/study/create-group';">Create Group</button> 
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/search';">View Groups</button> 
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/create-group';">Create Group</button> 
     </p>
   
     <p>
-    <button onclick="window.location.href='/study/profile';">Edit Profile</button>
-    <button onclick="window.location.href='/accounts/password/change/';">Change Password</button>
-    <button onclick="window.location.href='/accounts/logout/';">Logout</button>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/study/profile';">Edit Profile</button>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/accounts/password/change/';">Change Password</button>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/accounts/logout/';">Logout</button>
     </p>
   
  
   {% else %}
-    <a href="{% provider_login_url 'google' %}">Login with Google</a>
+  <a class="btn btn-secondary" href="{% provider_login_url 'google' %}" role="button">Login with Google</a>
   {% endif %}
 
   </body>
