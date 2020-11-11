@@ -6,6 +6,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Profile, StudyGroup
 
+from groupy.client import Client
 
 class SignupForm(forms.Form):
     first_name = forms.CharField(max_length=30, label='First Name')
@@ -26,7 +27,7 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'grad_year', 'major', 'student_id')
+        fields = ('bio', 'grad_year', 'major', 'student_id', 'courses')
 
 
 class CustomMMCF(forms.ModelMultipleChoiceField):
@@ -38,13 +39,12 @@ class GroupForm(forms.ModelForm):
     # Form that allows users to create a new group and select group members
     class Meta:
         model = StudyGroup
-        fields = ("group_name", "topic_course", "members")
+        fields = ("group_name", "topic_course", "members", "groupme_option")
     
     group_name = forms.CharField(max_length=50)
     topic_course = forms.CharField(max_length=20)
-
+    
     members = CustomMMCF(
         queryset=User.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )   
-    
