@@ -8,11 +8,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="pb-3">
+<div class="pb-4">
 <h5>Topic</h5>
 <div>{{studygroup.topic_course}}</div>
 </div>
-<div class="pb-5">
+<div class="pb-4">
     <ul class="list-group"> 
     <h5>Members</h5>
       {% for member in studygroup.members.all %}
@@ -22,5 +22,12 @@
       {% endfor %}
     </ul>
     </div>
-<a class="btn btn-success" href="{{ studygroup.groupme_url }}" target="_blank">Join GroupMe</a>
+    {% if studygroup.groupme_option %}
+    <div class = "pb-3">
+        <a class="btn btn-success" href="{{ studygroup.groupme_url }}" target="_blank">Join GroupMe</a>
+    </div>
+    {% endif %}
+<div class = "pb-5">
+    <a class="btn btn-secondary" href="/" role="button">Back to Home</a>
+</div>
 {% endblock %} 

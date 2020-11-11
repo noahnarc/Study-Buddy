@@ -6,14 +6,17 @@ Study Groups
 
 
 {% block content %}
-<div class="pb-5">
+<div class="pb-4">
 <form action="{% url 'study:search' %}" method="get">
     <input name = "q" class="form-control" type="text" placeholder="Search" aria-label="Search">
 </form>
 </div>
 
-<div class="pb-5">
+<div class="pb-4">
 <ul class="list-group"> 
+  {% if not object_list %}
+  No study groups are available at this time.
+  {% endif %}
   {% for group in object_list %}
     <li class = "list-group-item">
         <div><a href="{% url 'study:group' group.id %}">{{ group.group_name }}</a></div>
@@ -21,5 +24,11 @@ Study Groups
     </li>
   {% endfor %}
 </ul>
+</div>
+<div class = "pb-3">
+<button type="button" class="btn btn-primary" onclick="window.location.href='/study/create-group';">Create Group</button> 
+</div>
+<div class = "pb-5">
+  <a class="btn btn-secondary" href="/" role="button">Back to Home</a>
 </div>
 {% endblock %}
