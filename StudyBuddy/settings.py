@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
+#import os
 import groupy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -185,10 +187,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Activate Django-Heroku.
-try:
-    # Configure Django App for Heroku.
-    import django_heroku
-    django_heroku.settings(locals())
-except ImportError:
-    found = False
+# Configure Django App for Heroku.
+django_heroku.settings(locals(), test_runner=False)
