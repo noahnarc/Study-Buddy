@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
+from groupy.client import Client
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -54,4 +55,20 @@ class StudyGroup(models.Model):
 
     def __str__(self):
         return self.group_name
+
+    def save(self, *args, **kwargs):
+        if self.groupme_option:
+            # Create GroupMe
+            token = "GSTVyt66iVgWWj45IVAlXv5LLegUcSuLSyRMfBgP"
+            client = Client.from_token(token)
+            groupme = client.groups.create(name=self.group_name, share=True)
+            
+            # Obtain identifier and share URL
+            self.groupme_id = groupme.id
+            self.groupme_url = groupme.share_url
+            
+            # Post a message in the GroupMe
+            groupme.post("Welcome to GroupMe: " + self.group_name + "!")
+
+        super(StudyGroup, self).save(*args, **kwargs)
 

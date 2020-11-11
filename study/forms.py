@@ -43,23 +43,8 @@ class GroupForm(forms.ModelForm):
     
     group_name = forms.CharField(max_length=50)
     topic_course = forms.CharField(max_length=20)
+    
     members = CustomMMCF(
         queryset=User.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )   
-    
-    def save(self, commit=True):
-        newgroup = super(GroupForm, self).save(commit=False)
-        create = newgroup.groupme_option
-        if create:
-            token = "GSTVyt66iVgWWj45IVAlXv5LLegUcSuLSyRMfBgP"
-            client = Client.from_token(token)
-            groupme = client.groups.create(name=newgroup.group_name, share=True)
-            newgroup.groupme_id = groupme.id
-            newgroup.groupme_url = groupme.share_url
-            success = 'GroupMe Created!'
-            message = groupme.post(text=success)
-            newgroup.groupme_option = False
-        if commit:
-            newgroup.save()
-        return newgroup
