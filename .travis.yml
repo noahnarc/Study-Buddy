@@ -8,7 +8,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: bc33204a-ed89-44f3-a60e-dba6bd3a8b57
+    secure: IYx4Dl7Ki5Wx1VnnYTUJHKmVqxuw/UJebjt0/ZYAqKUj6WfCyny0CMx8OgSW0vryVBNZieEj8UmNxrmOCFzyL4/50dNjqim8II+cblzHSfPKq/XooZjzOp7sBlMzkHW9jaMZ6QLexjBdINtWPFFli4wyGvN2ycwKalOjtR72C8zce66dUcWILBkhZqMo8heavSDOLYLfF4D/bqJ4+XOkK7GBJVaNVZ1f9wCKMW7ondMLW+nBu03p1RFx2IZLL5Lb4Rfx2Bjc8ZLGcwa+p9m6BBVcSLMojj0pwVyIcafk95ePZe6RlCcHjV8uXSFV+/hT2yFEg92Gy5lU6p3GFC+OH5XYBKy+bAg7sUBSSMRth51H8L1v6cyk1n3J45odSDXX4VEqqcbmV6PbSY7U02I+qe9IncZVaXB0xvL+uf3ovxawH8WWGwjhZwWO74tHxVOrEIv81Ipb9XQ0ZzQwbAyujlDPHxhYWNbBjlQoYTPvGwX/UL3cVbcKUP99irX4MaqoK689gTZa841Hs0MoqVbdtt7jurSeRS+5siofNtKv5akIVbF8IV2dXtUHoqUI8AkFD9jae8xfyNEi2M7hFfhTweOaHPFk5A7a/x6J7A5xYaDJYQ7obzmFphd30dBe//jvcGbKY4Sk4+u7iSPyB/+8atO3UvM/uVmf7fNL/B+UHBY=
   app: team-1-06
   on:
     repo: uva-cs3240-f20/project-1-06
