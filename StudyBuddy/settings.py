@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
+#import django_heroku
 #import os
 import groupy
 
@@ -188,4 +188,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Configure Django App for Heroku.
-django_heroku.settings(locals(), test_runner=False)
+# django_heroku.settings(locals(), test_runner=False)
+
+# Activate Django-Heroku.
+try:
+    # Configure Django App for Heroku.
+    import django_heroku
+    django_heroku.settings(locals())
+except ImportError:
+    found = False
