@@ -1,15 +1,21 @@
 {% extends "study/base.html" %}
 
 {% block class_name %}
-Study Buddy
+{% load socialaccount %}
+<html>
+  <body>
+  {% if user.is_authenticated %}
+  Homepage
+  {% else %}
+  <h1>StudyBuddy</h1>
+  {% endif %}
+  </body>
+</html>
 {% endblock %}
 
 {% block content %}
 {% load socialaccount %}
 <html>
-  <head>
-    <title>Google Registration</title>
-  </head>
   <body>
   {% if user.is_authenticated %}
     <p>Welcome, {{ user.get_full_name }}!</p>
