@@ -25,6 +25,10 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['courses'].widget.attrs['placeholder'] = 'Ex: CS1110, CS3240, ...'
+
     class Meta:
         model = Profile
         fields = ('bio', 'grad_year', 'major', 'student_id', 'courses')
