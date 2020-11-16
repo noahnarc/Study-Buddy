@@ -9,7 +9,6 @@ from . import views
 
 app_name = 'study'
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
     path('profile', views.update_profile, name='profile'),
     path('search', login_required(views.SearchResultsView.as_view()), name='search'),
     path('groups/<int:pk>', login_required(views.GroupView.as_view()), name='group'),
