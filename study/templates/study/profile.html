@@ -8,20 +8,67 @@ Update Profile
 <div class="pb-3">
 <form method="post">
     {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
+    <div class="fieldWrapper">
+        <div class = "pb-3">
+            <label>First Name</label>
+                <div>
+                    {{ user_form.first_name }}
+                </div>
+        </div>
+    </div>
+    <div class="fieldWrapper">
+        <div class = "pb-3">
+            <label>Last Name</label>
+                <div>
+                    {{ user_form.last_name }}
+                </div>
+        </div>
+    </div>
+    <div class="fieldWrapper">
+        <div class = "pb-3">
+            <label>Bio</label>
+                <div>
+                    {{ profile_form.bio }}
+                </div>
+        </div>
+    </div>
+    <div class="fieldWrapper">
+        <div class = "pb-3">
+            <label>Graduation Year</label>
+                <div>
+                    {{ profile_form.grad_year }}
+                </div>
+        </div>
+    </div>
+    <div class="fieldWrapper">
+        <div class = "pb-3">
+            <label>Major</label>
+                <div>
+                    {{ profile_form.major }}
+                </div>
+        </div>
+    </div>
+    <div class="fieldWrapper">
+        <div class = "pb-3">
+            <label>Computing ID</label>
+                <div>
+                    {{ profile_form.student_id }}
+                </div>
+        </div>
+    </div>
+    <div class="pb-3 fieldWrapper">
+        <div class = "pb-3">
+            <label>Course List</label>
+                <div>
+                    {{ profile_form.courses }}
+                </div>
+        </div>
+    </div>
     <button class="btn btn-primary" type="submit">Save Changes</button>
 </form>
 </div>
-<div class = "pb-3">
+<div class = "pb-5">
     <a class="btn btn-secondary" href="/" role="button">Back to Home</a>
-</div>
-<div class="pb-5">
-{% if messages %}
-    {% for message in messages %}
-        <div>{{ message }}</div>
-    {% endfor %}
-{% endif %}
 </div>
 
 {% endblock %}
