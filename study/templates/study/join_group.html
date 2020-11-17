@@ -1,0 +1,13 @@
+{% extends "study/base.html" %}
+
+{% block class_name %}
+  {% csrf_token %}
+  {{ studygroup.group_name }}
+{% endblock %}
+
+{% block content%}
+    <header>Joined Group!</header>
+    <div class= "pb-3">
+        <a class="btn btn-success" href="{% url 'study:group' studygroup.id %}">Return to { studygroup.group_name }</a>
+    </div>
+{% end block %}
