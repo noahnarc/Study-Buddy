@@ -81,3 +81,16 @@ class CreateGroup(CreateView):
     form_class = GroupForm
     template_name = 'study/create_group.html'
     success_url = 'search'
+
+
+def join_group(request, pk):
+    # Obtain the current user
+    new_member = request.user
+
+    # Find the group that matches the URL request
+    group = StudyGroup.objects.get(id=pk)
+
+    # Add the new member and redirect to the group page
+    group.members.add(new_member)
+    group.save()
+    return redirect('study:group', pk)
