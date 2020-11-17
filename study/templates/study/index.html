@@ -42,14 +42,15 @@
     
     <!-- Navigation buttons for groups search and group creation -->
     <p>
-    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/search';">View Groups</button> 
-    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/create-group';">Create Group</button> 
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/search-members';">View Members</button> 
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/search-groups';">View Groups</button> 
+    <button type="button" class="btn btn-link" onclick="window.location.href='/study/create-group';">Create Group</button> 
     </p>
   
     <!-- Navigation buttons for profile and logout -->
     <p>
-    <button type="button" class="btn btn-secondary" onclick="window.location.href='/study/profile';">Edit Profile</button>
-    <button type="button" class="btn btn-secondary" onclick="window.location.href='/accounts/logout/';">Logout</button>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/study/profile';">Edit Profile</button>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/accounts/logout/';">Logout</button>
     </p>
   
   {% else %}
