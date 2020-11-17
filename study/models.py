@@ -9,9 +9,13 @@ from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from groupy.client import Client
 
+
+# Custom model Profile is linked to a specific User for authentication
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
+    
+    # Custom labels for form selection *CHANGE EACH YEAR*
     YEAR_CHOICES = [
         ('2021', '2021'),
         ('2022', '2022'),
@@ -20,35 +24,44 @@ class Profile(models.Model):
     ]
     grad_year = models.CharField('Graduation Year',max_length=30, choices=YEAR_CHOICES, blank=True)
     major = models.CharField(max_length=50, blank=True)
-    schedule = models.TextField(max_length=500, blank=True)
     student_id = models.CharField('Student ID', max_length=10, blank=True)
     groups = models.ManyToManyField('StudyGroup')
+    # Generate the tags and filtering options
     courses = TaggableManager("Courses", "ex: CS1110, ECON1010")  
 
+    # Initial attempt to generate schedules *NOT IN USE*
+    schedule = models.TextField(max_length=500, blank=True)        
+
+    # Return the email as the string representation of Profile
     def __str__(self):
         return self.user.email
 
 
+# Ensures that whenever a User is created their Profile is also created
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
 
+# Ensures that whenever a User is saved their Profile is also saved
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
+# Custom model StudyGroup has a many-to-many relationship with Users
 class StudyGroup(models.Model):
     id = models.AutoField(primary_key=True)
     group_name = models.CharField(max_length=50, unique=True, blank=False)
     topic_course = models.CharField(max_length=20)
     members = models.ManyToManyField(User)
     tags = TaggableManager()
-    groupme_option = models.BooleanField("Create GroupMe?", default=False, blank=False)    # Does the user want to generate a group message?
-    groupme_id = models.CharField(max_length=100)                       # Unique identifier provided by API
-    groupme_url = models.CharField(max_length=100)                      # Unique share URL provided by API
+    
+    # Attributes needed for GroupMe integration
+    groupme_option = models.BooleanField("Create GroupMe?", default=False, blank=False)     # Does the user want to generate a group message?
+    groupme_id = models.CharField(max_length=100)                                           # Unique identifier provided by API
+    groupme_url = models.CharField(max_length=100)                                          # Unique share URL provided by API
 
     class Meta:
         verbose_name = 'Study Group'
@@ -56,8 +69,12 @@ class StudyGroup(models.Model):
     def __str__(self):
         return self.group_name
 
+    # Custom save method used to generate external GroupMe message based on form submission
     def save(self, *args, **kwargs):
+        
+        # Check to see if the group needs a GroupMe
         if self.groupme_option:
+            
             # Create GroupMe
             token = "GSTVyt66iVgWWj45IVAlXv5LLegUcSuLSyRMfBgP"
             client = Client.from_token(token)

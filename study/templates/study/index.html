@@ -1,9 +1,13 @@
 {% extends "study/base.html" %}
 
 {% block class_name %}
+
+<!-- Load socialaccount for authentication checks -->
 {% load socialaccount %}
 <html>
   <body>
+  
+  <!-- Check to see if the user is authenticated before generating homepage -->
   {% if user.is_authenticated %}
   Homepage
   {% else %}
@@ -14,10 +18,14 @@
 {% endblock %}
 
 {% block content %}
+
+<!-- Load socialaccount for authentication checks -->
 {% load socialaccount %}
 <html>
   <body>
   {% if user.is_authenticated %}
+      
+    <!-- If the user is authenticated, load their profile information -->
     <p>Welcome, {{ user.get_full_name }}!</p>
     <ul>
       <li class = "pb-3"><b>Email: </b>{{ user.email }}</li>
@@ -25,24 +33,31 @@
       <li class = "pb-3"><b>Graduation Year: </b>{{ user.profile.grad_year }}</li>
       <li class = "pb-3"><b>Major: </b>{{ user.profile.major }}</li>
       <li class = "pb-3"><b>Courses: </b>
-      {%for tag in user.profile.courses.all %}
-      <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.location.href='/study/search?q='+'{{tag.name}}';">{{ tag.name }}</button> 
+
+      <!-- List all the relevant tags for the user -->
+      {% for tag in user.profile.courses.all %}
+      <div class="pb-3">
+        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.location.href='/study/search?q='+'{{tag.name}}';">{{ tag.name }}</button> 
+      </div>
       {% endfor %}
       </li>
     </ul>
     
+    <!-- Navigation buttons for groups search and group creation -->
     <p>
     <button type="button" class="btn btn-primary" onclick="window.location.href='/study/search';">View Groups</button> 
     <button type="button" class="btn btn-primary" onclick="window.location.href='/study/create-group';">Create Group</button> 
     </p>
   
+    <!-- Navigation buttons for profile and logout -->
     <p>
     <button type="button" class="btn btn-secondary" onclick="window.location.href='/study/profile';">Edit Profile</button>
     <button type="button" class="btn btn-secondary" onclick="window.location.href='/accounts/logout/';">Logout</button>
     </p>
   
- 
   {% else %}
+
+  <!-- If the user is not authenticated, generate a login screen -->
   <a class="btn btn-secondary" href="{% provider_login_url 'google' %}" role="button">Login with Google</a>
   {% endif %}
 

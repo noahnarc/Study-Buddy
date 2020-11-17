@@ -18,7 +18,7 @@
       
     <!-- List all the members in the group -->
       {% for member in studygroup.members.all %}
-        <li class = "list-group-item">
+        <li class="list-group-item">
         {{ member.get_full_name }}
         </li>
       {% endfor %}
@@ -26,18 +26,18 @@
     </div>
     
     <!-- Button for current user to join a Group -->
-    <div class = "pb-3">
-      <a class = "btn btn-primary btn-sm btn-block"  href="{% url 'study:join-group' studygroup.id %}"> Click here to join! </a>
+    <div class="pb-3">
+      <a class="btn btn-primary btn-sm btn-block"  href="{% url 'study:join-group' studygroup.id %}"> Click here to join! </a>
     </div>
     
     <!-- Button to join a GroupMe -->
     {% if studygroup.groupme_option %}
-    <div class = "pb-3">
+    <div class="pb-3">
         <a class="btn btn-link btn-sm btn-block" href="{{ studygroup.groupme_url }}" target="_blank">Connect with GroupMe</a>
     {% endif %}
 
     <!-- Button to return to Homepage -->
-    <div class = "pb-5 pt-5">
+    <div class="pb-5 pt-5">
         <a class="btn btn-secondary" href="/" role="button">Back to Home</a>
     </div>
 {% endblock %} 
