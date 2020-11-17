@@ -27,6 +27,10 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
+<<<<<<< Updated upstream
+=======
+        self.fields['bio'].widget.attrs['placeholder'] = 'Please include a brief description of yourself! Feel free to list any specific topics where you are looking for help or feel you could help others.'
+>>>>>>> Stashed changes
         self.fields['courses'].widget.attrs['placeholder'] = 'Ex: CS1110, CS3240, ...'
 
     class Meta:
