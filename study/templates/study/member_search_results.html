@@ -33,7 +33,7 @@ Members
       <div ><small><b>Email: </b>{{ member.user.email }}</small></div>
       <div><small><b>Student ID: </b>{{ member.student_id }}</small></div>
       <div><small><b>Major: </b>{{ member.major }}</small></div>
-      <div><small><b>Courses: </br>
+      <div><small><b>Courses: </b>
         {%for course in member.courses.all%}
         {{ course.name }}
         {%endfor%}
