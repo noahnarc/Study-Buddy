@@ -10,7 +10,7 @@ from django.db import transaction
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, ProfileForm, GroupForm
-from .models import StudyGroup
+from .models import StudyGroup, Profile
 from taggit.models import Tag
 
 
@@ -85,9 +85,9 @@ def update_profile(request):
 
 
 # Return the StudyGroup search results for a specific search term 'q'
-class SearchResultsView(ListView):
+class GroupSearchResultsView(ListView):
     model = StudyGroup
-    template_name = 'study/search_results.html'
+    template_name = 'study/group_search_results.html'
     
     # Define the query that will be used with the search bar
     def get_queryset(self):
@@ -105,12 +105,32 @@ class SearchResultsView(ListView):
         return object_list
 
 
+# Return the Profile search results for a specific search term 'q'
+class MemberSearchResultsView(ListView):
+    model = StudyGroup
+    template_name = 'study/member_search_results.html'
+    
+    # Define the query that will be used with the search bar
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        
+        # If there is a search term, filter Profiles based on terms
+        if query:
+            object_list = Profile.objects.filter(
+                Q(bio__icontains=query) | Q(major__icontains=query) | Q(student_id__icontains=query)
+            )
+
+        # If there is no search term, return a list of all the StudyGroups
+        else:
+            object_list = Profile.objects.all()
+        return object_list
+
 # Use the default model for for StudyGroup creation
 class CreateGroup(CreateView):
     model = StudyGroup
     form_class = GroupForm
     template_name = 'study/create_group.html'
-    success_url = 'search'
+    success_url = 'search-groups'
     
 
 # Join a StudyGroup via button and return the new list of members

@@ -1,0 +1,46 @@
+{% extends "study/base.html" %}
+
+{% block class_name %}
+Members
+{% endblock %}
+
+
+{% block content %}
+<div>
+  <p>Search by Student ID, Major, or Bio</p>
+</div>
+<!-- Search bar -->
+<div class="pb-4">
+<form action="{% url 'study:search-members' %}" method="get">
+    <input name = "q" class="form-control" type="text" placeholder="Search" aria-label="Search">
+</form>
+</div>
+
+<div class="pb-4">
+<ul class="list-group"> 
+  
+  <!-- Message displayed when there are no available members -->
+  {% if not object_list %}
+  No members are available at this time.
+  {% endif %}
+
+  <!-- Loop through all the Profiles in the query -->
+  {% for member in object_list %}
+    <li class = "list-group-item">
+        
+      <!-- Member information -->
+      <div><h6 class="mb-1">{{ member.user.get_full_name }}</h6></div>
+      <div ><small><b>Email: </b>{{ member.user.email }}</small></div>
+      <div><small><b>Student ID: </b>{{ member.student_id }}</small></div>
+      <div><small><b>Major: </b>{{ member.major }}</small></div>
+      <div ><small><em>{{ member.bio }}</em></small></div>
+    </li>
+  {% endfor %}
+</ul>
+</div>
+
+<!-- Additional navigation buttons -->
+<div class = "pb-5">
+  <a class="btn btn-secondary" href="/" role="button">Back to Home</a>
+</div>
+{% endblock %}

@@ -6,10 +6,12 @@ Study Groups
 
 
 {% block content %}
-
+<div>
+  <p>Search by Group Name or Topic</p>
+</div>
 <!-- Search bar -->
 <div class="pb-4">
-<form action="{% url 'study:search' %}" method="get">
+<form action="{% url 'study:search-groups' %}" method="get">
     <input name = "q" class="form-control" type="text" placeholder="Search" aria-label="Search">
 </form>
 </div>

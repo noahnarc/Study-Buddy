@@ -26,14 +26,23 @@
     </div>
     
     <!-- Button for current user to join a Group -->
-    <div class="pb-3">
+    <div class="pb-2">
       <a class="btn btn-primary btn-sm btn-block"  href="{% url 'study:join-group' studygroup.id %}"> Click here to join! </a>
     </div>
     
     <!-- Button to join a GroupMe -->
     {% if studygroup.groupme_option %}
+    {% if user in studygroup.members.all %}
     <div class="pb-3">
         <a class="btn btn-link btn-sm btn-block" href="{{ studygroup.groupme_url }}" target="_blank">Connect with GroupMe</a>
+    </div>
+
+    <!-- Disable the link for users who are not a member of the StudyGroup -->
+    {% else %}
+    <div class="pb-3">
+      <button type="button" class="btn btn-link btn-sm btn-block" disabled>Connect with GroupMe</button>
+    </div>
+    {% endif %}
     {% endif %}
 
     <!-- Button to return to Homepage -->
