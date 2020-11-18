@@ -6,6 +6,8 @@ Update Profile
 
 {% block content %}
 <div class="pb-3">
+
+<!-- Custom form fields using fieldWrapper -->
 <form method="post">
     {% csrf_token %}
     <div class="fieldWrapper">
@@ -56,7 +58,7 @@ Update Profile
                 </div>
         </div>
     </div>
-    <div class="pb-3 fieldWrapper">
+    <div class="fieldWrapper">
         <div class = "pb-3">
             <label>Course List</label>
                 <div>
@@ -67,6 +69,8 @@ Update Profile
     <button class="btn btn-primary" type="submit">Save Changes</button>
 </form>
 </div>
+
+<!-- Navigation buttons -->
 <div class = "pb-5">
     <a class="btn btn-secondary" href="/" role="button">Back to Home</a>
 </div>
