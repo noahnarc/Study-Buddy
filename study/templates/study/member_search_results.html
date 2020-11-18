@@ -34,7 +34,7 @@ Members
       <div><small><b>Student ID: </b>{{ member.student_id }}</small></div>
       <div><small><b>Major: </b>{{ member.major }}</small></div>
       <div><small><b>Courses: </br>
-        {%for course in member.course.all%}
+        {%for course in member.courses.all%}
         {{ course.name }}
         {%endfor%}
         </small></div>
