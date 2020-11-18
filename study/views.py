@@ -117,7 +117,8 @@ class MemberSearchResultsView(ListView):
         # If there is a search term, filter Profiles based on terms
         if query:
             object_list = Profile.objects.filter(
-                Q(bio__icontains=query) | Q(major__icontains=query) | Q(student_id__icontains=query) | Q((name_icontains=query) for query in courses)
+                Q(bio__icontains=query) | Q(major__icontains=query) | Q(student_id__icontains=query) | reduce(operator.and_(Q((name_icontains=query) for query in courses))
+                 # trying to figure out how to quesry an entir list                                                                                             
             )
 
         # If there is no search term, return a list of all the StudyGroups
