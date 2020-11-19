@@ -1,33 +1,51 @@
-{% extends "account/base.html" %}
+{% extends "study/base.html" %}
 
-{% load i18n %}
-{% load account socialaccount %}
-
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block class_name %}
+{% load socialaccount %}
+<html>
+  <body>
+  {% if user.is_authenticated %}
+  Homepage
+  {% else %}
+  <h1>StudyBuddy</h1>
+  {% endif %}
+  </body>
+</html>
+{% endblock %}
 
 {% block content %}
+{% load socialaccount %}
+<html>
+  <body>
+  {% if user.is_authenticated %}
+    <p>Welcome, {{ user.get_full_name }}!</p>
+    <ul>
+      <li class = "pb-3"><b>Email: </b>{{ user.email }}</li>
+      <li class = "pb-3"><b>Bio: </b>{{ user.profile.bio }}</li>
+      <li class = "pb-3"><b>Graduation Year: </b>{{ user.profile.grad_year }}</li>
+      <li class = "pb-3"><b>Major: </b>{{ user.profile.major }}</li>
+      <li class = "pb-3"><b>Courses: </b>
+      {%for tag in user.profile.courses.all %}
+      <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.location.href='/study/search?q='+'{{tag.name}}';">{{ tag.name }}</button> 
+      {% endfor %}
+      </li>
+    </ul>
+    
+    <p>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/search';">View Groups</button> 
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/study/create-group';">Create Group</button> 
+    </p>
+  
+    <p>
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='/study/profile';">Edit Profile</button>
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='/accounts/logout/';">Logout</button>
+    </p>
+  
+ 
+  {% else %}
+  <a class="btn btn-secondary" href="{% provider_login_url 'google' %}" role="button">Login with Google</a>
+  {% endif %}
 
-<h1>{% trans "Sign In" %}</h1>
-
-{% get_providers as socialaccount_providers %}
-
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with an existing third party accounts.{% endblocktrans %}</p>
-
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-</div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-
+  </body>
+</html>
 {% endblock %}

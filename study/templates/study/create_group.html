@@ -1,14 +1,18 @@
 {% extends "study/base.html" %}
 
 {% block class_name %}
-Create  a Group
+Create a Group
 {% endblock %}
 
 {% block content %}
 <div class="pb-3">
+
+<!-- Generate the group create form -->
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+
+    <!-- Adding a save button -->
     <button class="btn btn-primary" type="submit">Save changes</button>
 </form>
 </div>

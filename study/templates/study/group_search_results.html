@@ -6,25 +6,37 @@ Study Groups
 
 
 {% block content %}
+<div>
+  <p>Search by Group Name or Topic</p>
+</div>
+<!-- Search bar -->
 <div class="pb-4">
-<form action="{% url 'study:search' %}" method="get">
+<form action="{% url 'study:search-groups' %}" method="get">
     <input name = "q" class="form-control" type="text" placeholder="Search" aria-label="Search">
 </form>
 </div>
 
 <div class="pb-4">
 <ul class="list-group"> 
+  
+  <!-- Message displayed when there are no available groups -->
   {% if not object_list %}
   No study groups are available at this time.
   {% endif %}
+
+  <!-- Loop through all the groups in the query -->
   {% for group in object_list %}
     <li class = "list-group-item">
+        
+      <!-- Link to the specific group page -->
         <div><a href="{% url 'study:group' group.id %}">{{ group.group_name }}</a></div>
         <small>Topic: {{ group.topic_course }}</small>
     </li>
   {% endfor %}
 </ul>
 </div>
+
+<!-- Additional navigation buttons -->
 <div class = "pb-3">
 <button type="button" class="btn btn-primary" onclick="window.location.href='/study/create-group';">Create Group</button> 
 </div>
