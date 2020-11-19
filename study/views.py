@@ -118,7 +118,7 @@ class MemberSearchResultsView(ListView):
         if query:
             object_list = Profile.objects.filter(
                 Q(bio__icontains=query) | Q(major__icontains=query) | Q(student_id__icontains=query) | Q(courses__name__in=[query])
-                 # trying to figure out how to quesry an entir list                                                                                             
+                 # added querying for the couse tags (limited due to only matching on the while tag)                                                                                            
             )
 
         # If there is no search term, return a list of all the StudyGroups
