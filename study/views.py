@@ -124,7 +124,7 @@ class MemberSearchResultsView(ListView):
         # If there is no search term, return a list of all the StudyGroups
         else:
             object_list = Profile.objects.all()
-        return object_list
+        return object_list.distinct()
 
 # Use the default model for for StudyGroup creation
 class CreateGroup(CreateView):
