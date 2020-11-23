@@ -42,4 +42,7 @@ class GroupFormTest(TestCase):
     def test_GroupForm_valid(self):
         form = GroupForm(data={'group_name' : "groupname", 'topic_course' : "course"})
         self.assertTrue(form.is_valid())
+    def test_GroupForm_invalid(self):
+        form = GroupForm(data={'group_name' : "", 'topic_course' : ""})
+        self.assertFalse(form.is_valid()) 
 
