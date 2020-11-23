@@ -123,7 +123,7 @@ class MemberSearchResultsView(ListView):
                 # Querying for the couse tags (limited due to only matching on the while tag)
                 Q(courses__name__in=[query]) |      
                 # Querying for individual first and last name                                                                                                  
-                Q(user__first_name__icontain=query) |
+                Q(user__first_name__icontains=query) |
                 Q(user__last_name__icontains=query) |
                 # Querying for full name
                 Q(user__first_name__icontains=query.split(' ')[0], user__last_name__icontains=query.split(' ')[-1])
