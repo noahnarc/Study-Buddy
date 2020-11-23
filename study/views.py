@@ -102,7 +102,7 @@ class GroupSearchResultsView(ListView):
         # If there is no search term, return a list of all the StudyGroups
         else:
             object_list = StudyGroup.objects.all()
-        return object_list
+        return object_list.distinct().order_by('group_name')
 
 
 # Return the Profile search results for a specific search term 'q'
@@ -117,14 +117,22 @@ class MemberSearchResultsView(ListView):
         # If there is a search term, filter Profiles based on terms
         if query:
             object_list = Profile.objects.filter(
-                Q(bio__icontains=query) | Q(major__icontains=query) | Q(student_id__icontains=query) | Q(courses__name__in=[query])
-                 # added querying for the couse tags (limited due to only matching on the while tag)                                                                                            
+                Q(bio__icontains=query) | 
+                Q(major__icontains=query) | 
+                Q(student_id__icontains=query) | 
+                # Querying for the couse tags (limited due to only matching on the while tag)
+                Q(courses__name__in=[query]) |      
+                # Querying for individual first and last name                                                                                                  
+                Q(user__first_name__icontain=query) |
+                Q(user__last_name__icontains=query) |
+                # Querying for full name
+                Q(user__first_name__icontains=query.split(' ')[0], user__last_name__icontains=query.split(' ')[-1])
             )
 
         # If there is no search term, return a list of all the StudyGroups
         else:
             object_list = Profile.objects.all()
-        return object_list.distinct()
+        return object_list.distinct().order_by('user__last_name')
 
 # Use the default model for for StudyGroup creation
 class CreateGroup(CreateView):
