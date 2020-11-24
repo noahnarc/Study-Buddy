@@ -38,7 +38,7 @@ The following information will be collected from users:
 Navigate to the "Edit Profile" button in order to enter initial profile information. After returning to the Homepage, you should be able to validate that all your information has been saved.
 
 #### Existing Users
-Existing users should see all the information that they've previously saved within the Homepage. You may update this information at any point in time.
+Users that have already completed profile set up should see all the information that they've previously saved within the Homepage. You may update this information at any point in time.
 
 ## Homepage 
 | Button | Functionality  |
