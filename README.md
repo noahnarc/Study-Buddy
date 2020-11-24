@@ -9,7 +9,7 @@ https://team-1-06.herokuapp.com/
 * Testing Manager - Noah Narciso (nn9ja)
 * Scrum Master - Sarah Snow (ses9nd)
 
-#### Overview
+## Overview
 Study Buddy is a web application that allows users to find virtual study groups or partners. Users may upload profile information, search for specific members, create custom groups, or join an existing group. 
 
   - Users are able to log in to the site with an existing Google account. 
@@ -21,7 +21,7 @@ Study Buddy is a web application that allows users to find virtual study groups 
   - GroupMe groups are generated automatically.
   - GroupMe will display a custom welcome message and allow current group members to join.
   
-#### User Profiles
+## User Profiles
 The following information will be collected from users: 
   - Email (required)
   - Name
@@ -31,10 +31,20 @@ The following information will be collected from users:
   - Computing ID
   - Course List
 
-#### GroupMe
+## Homepage Features
+
+| Button | Functionality  |
+|--------------|-----------------------------------------------------|
+| View Members | Users are able to view and search all active users  |
+| View Groups  | Users are able to view and search all active groups |
+| Create Group | Users are able to create a new group                |
+| Edit Profile | Users are able to update their profile              |
+| Logout       | Users are able to safely exit the application       | 
+
+## GroupMe
 In order to maximize the functionality of the web application, it is recommended that users create a [GroupMe] account using their personal phone number. Study groups formed through the site will have the option to communicate via an automatically generated GroupMe group message. This is a way to virtually connect and communicate with other memebers about relevant coursework. The GroupMe groups will all have an admin account named StudyBuddy that is added to each group message. These groups will be unmonitored by default, but users can email the admin account studybuddy3240@gmail.com to report any malicious behavior.
 
-#### Resources
+## Resources
 StudyBuddy uses a number of open-source resources:
 
 * [Bootstrap4]
