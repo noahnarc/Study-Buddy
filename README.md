@@ -33,9 +33,14 @@ The following information will be collected from users:
   - Major
   - Computing ID
   - Course List
+  
+#### New Users
+Navigate to the "Edit Profile" button in order to enter initial profile information. After returning to the Homepage, you should be able to validate that all your information has been saved.
 
-## Homepage Features
+#### Existing Users
+Existing users should see all the information that they've previously saved within the Homepage. You may update this information at any point in time.
 
+## Homepage 
 | Button | Functionality  |
 |:-|:-|
 | View Members | Users are able to view and search all active users  |
