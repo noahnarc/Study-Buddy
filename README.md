@@ -1,5 +1,6 @@
-# Study Buddy
+# StudyBuddy
 UVA - CS3240 - Fall 2020 - Advanced Software Development
+
 #### Team 1-06: Members
 * Requirements Manager - Caroline Chen (cc8tt)
 * DevOps Manager - Kendall Livesay (krl7ee)
