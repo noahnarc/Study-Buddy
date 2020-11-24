@@ -5,12 +5,12 @@ https://team-1-06.herokuapp.com/
 
 #### Team 1-06: Members
 
-| Name            | Role                 | Computing ID |
-|-----------------|----------------------|--------------|
-| Caroline Chen   | Requirements Manager | cc8tt        |
-| Kendall Livesay | DevOps Manager       | krl7ee       |
-| Noah Narciso    | Testing Manager      | nn9ja        |
-| Sarah Snow      | Scrum Master         | ses9nd       |
+| Name | Role | Computing ID |
+|:-|:-|:-|
+| Caroline Chen | Requirements Manager | cc8tt |
+| Kendall Livesay | DevOps Manager | krl7ee |
+| Noah Narciso | Testing Manager | nn9ja |
+| Sarah Snow | Scrum Master | ses9nd |
 
 ## Overview
 Study Buddy is a web application that allows users to find virtual study groups or partners. Users may upload profile information, search for specific members, create custom groups, or join an existing group. 
