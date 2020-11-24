@@ -35,6 +35,13 @@ class GroupMeView(DetailView):
         return StudyGroup.objects.all()
 
 
+"""
+REFERENCES
+Title: Creating a User Profile page using OneToOne field with User Model
+Author: Roma
+Date: Oct 4, 2020
+URL: https://stackoverflow.com/questions/45936087/creating-a-user-profile-page-using-onetoone-field-with-user-model
+"""
 # Update Profile that is linked to a User update
 @login_required
 @transaction.atomic
@@ -84,6 +91,13 @@ def update_profile(request):
     })
 
 
+"""
+REFERENCES
+Title: Django Search Tutorial
+Author: Will Vincent
+Date: Oct 13, 2020
+URL: https://learndjango.com/tutorials/django-search-tutorial
+"""
 # Return the StudyGroup search results for a specific search term 'q'
 class GroupSearchResultsView(ListView):
     model = StudyGroup
@@ -105,6 +119,13 @@ class GroupSearchResultsView(ListView):
         return object_list.distinct().order_by('group_name')
 
 
+"""
+REFERENCES
+Title: Django Search Tutorial
+Author: Will Vincent
+Date: Oct 13, 2020
+URL: https://learndjango.com/tutorials/django-search-tutorial
+"""
 # Return the Profile search results for a specific search term 'q'
 class MemberSearchResultsView(ListView):
     model = StudyGroup

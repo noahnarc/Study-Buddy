@@ -36,7 +36,13 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.email
 
-
+"""
+REFERENCES
+Title: Creating a User Profile page using OneToOne field with User Model
+Author: Roma
+Date: Oct 4, 2020
+URL: https://stackoverflow.com/questions/45936087/creating-a-user-profile-page-using-onetoone-field-with-user-model
+"""
 # Ensures that whenever a User is created their Profile is also created
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -58,6 +64,14 @@ class StudyGroup(models.Model):
     members = models.ManyToManyField(User)
     tags = TaggableManager()
     
+    """
+    REFERENCES
+    Title: Groupy
+    Author: rhgrant10
+    Date: Nov 9, 2020
+    URL: https://github.com/rhgrant10/Groupy
+    License: Apache 2.0 License
+    """
     # Attributes needed for GroupMe integration
     groupme_option = models.BooleanField("Create GroupMe?", default=False, blank=False)     # Does the user want to generate a group message?
     groupme_id = models.CharField(max_length=100)                                           # Unique identifier provided by API

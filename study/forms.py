@@ -8,7 +8,13 @@ from .models import Profile, StudyGroup
 
 from groupy.client import Client
 
-
+"""
+REFERENCES
+Title: Django allauth saving custom user profile fields with signup form
+Author: prithvi
+Date: Oct 3, 2020
+URL: https://stackoverflow.com/questions/44133562/django-add-placeholder-text-to-form-field
+"""
 # Initial signup form was designed to let users customize their names *NOT IN USE*
 class SignupForm(forms.Form):
     first_name = forms.CharField(max_length=30, label='First Name')
@@ -25,7 +31,13 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name')
 
-
+"""
+REFERENCES
+Title: Django add placeholdertext to form field
+Author: aziminia
+Date: Nov 16, 2020
+URL: https://stackoverflow.com/questions/44133562/django-add-placeholder-text-to-form-field
+"""
 class ProfileForm(forms.ModelForm):
     # Including placeholder labels for profile form submission
     def __init__(self, *args, **kwargs):
@@ -44,7 +56,13 @@ class CustomMMCF(forms.ModelMultipleChoiceField):
     def label_from_instance(self, User):
         return "%s" % User.email
 
-
+"""
+REFERENCES
+Title: Django Forms for Many-to-Many Fields
+Author: Alice Campkin
+Date: Oct 26, 2020
+URL: https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024
+"""
 class GroupForm(forms.ModelForm):
     # Form that allows users to create a new group and select group members
     class Meta:
