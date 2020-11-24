@@ -32,10 +32,11 @@
       <li class = "pb-3"><b>Bio: </b>{{ user.profile.bio }}</li>
       <li class = "pb-3"><b>Graduation Year: </b>{{ user.profile.grad_year }}</li>
       <li class = "pb-3"><b>Major: </b>{{ user.profile.major }}</li>
+       <li class = "pb-3"><b>Computing ID: </b>{{ user.profile.student_id }}</li>
       <li class = "pb-3"><b>Courses: </b>
       <!-- List all the relevant tags for the user -->
       {% for tag in user.profile.courses.all %}
-        <button type="button" class="p-1 btn btn-outline-secondary btn-sm" onclick="window.location.href='/study/search-groups?q='+'{{tag.name}}';">{{ tag.name }}</button> 
+        <button type="button" class="mb-2 btn btn-outline-secondary btn-sm" onclick="window.location.href='/study/search-groups?q='+'{{tag.name}}';">{{ tag.name }}</button> 
       {% endfor %}
       </li>
     </ul>

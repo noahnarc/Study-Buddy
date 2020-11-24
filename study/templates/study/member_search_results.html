@@ -7,7 +7,7 @@ Members
 
 {% block content %}
 <div>
-  <p>Search by Student ID, Major, Courses, or Bio</p>
+  <p>Search by Name, Student ID, Major, Courses, or Bio</p>
 </div>
 <!-- Search bar -->
 <div class="pb-4">
@@ -32,6 +32,7 @@ Members
       <div><h6 class="mb-1">{{ member.user.get_full_name }}</h6></div>
       <div ><small><b>Email: </b>{{ member.user.email }}</small></div>
       <div><small><b>Student ID: </b>{{ member.student_id }}</small></div>
+      <div><small><b>Graduation Year: </b>{{ member.grad_year }}</small></div>
       <div><small><b>Major: </b>{{ member.major }}</small></div>
       <div><small><b>Courses: </b>
         {%for course in member.courses.all%}

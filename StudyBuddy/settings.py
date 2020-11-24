@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'groupy',
 ]
 
+TAGGIT_CASE_INSENSITIVE = True
+
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
