@@ -32,6 +32,7 @@
       <li class = "pb-3"><b>Bio: </b>{{ user.profile.bio }}</li>
       <li class = "pb-3"><b>Graduation Year: </b>{{ user.profile.grad_year }}</li>
       <li class = "pb-3"><b>Major: </b>{{ user.profile.major }}</li>
+       <li class = "pb-3"><b>Computing ID: </b>{{ user.student_id }}</li>
       <li class = "pb-3"><b>Courses: </b>
       <!-- List all the relevant tags for the user -->
       {% for tag in user.profile.courses.all %}
