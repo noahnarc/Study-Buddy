@@ -25,10 +25,13 @@
     </ul>
     </div>
     
-    <!-- Button for current user to join a Group -->
+    <!-- Button for current non-member to join a Group -->
+    {% if user in studygroup.members.all %}
+    {% else %}
     <div class="pb-2">
       <a class="btn btn-primary btn-sm btn-block"  href="{% url 'study:join-group' studygroup.id %}"> Click here to join! </a>
     </div>
+    {% endif %}
     
     <!-- Button to join a GroupMe -->
     {% if studygroup.groupme_option %}
