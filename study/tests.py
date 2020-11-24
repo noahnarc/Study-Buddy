@@ -48,7 +48,7 @@ class SignupFormTest(TestCase):
         self.assertTrue(form.is_valid())
 
     # The user should not be able to add more than 30 characters
-    def test_SignupForm_invalid_long(self):
+    def test_SignupForm_invalid_length(self):
         form = UserForm(data={'first_name' : "", 'last_name' : "0000000000111111111122222222223"})
         self.assertTrue(form.is_valid())
 
@@ -87,6 +87,11 @@ class ProfileFormTest(TestCase):
     def test_ProfileForm_valid_courses(self):
         form = ProfileForm(data={'bio' : "bio", 'grad_year' : "2022", 'major' : "major", 'student_id' : "id", 'courses' : "cs1110, cs3240"})
         self.assertTrue(form.is_valid())
+    
+    # The user should be able to enter duplicate courses
+    def test_ProfileForm_valid_courses_duplicate(self):
+        form = ProfileForm(data={'bio' : "bio", 'grad_year' : "2022", 'major' : "major", 'student_id' : "id", 'courses' : "cs1110, cs1110"})
+        self.assertTrue(form.is_valid())
 
     # The user should not be able to enter no data for courses
     def test_ProfileForm_invalid_courses(self):
@@ -113,6 +118,24 @@ class GroupFormTest(TestCase):
         form = GroupForm(data={'group_name' : "groupname", 'topic_course' : "course", 'groupme_option' : True, 'members' : {fake_user}})
         self.assertTrue(form.is_valid())
     
+    # The user should be able to create a group with multiple users
+    def test_GroupForm_valid_duplicate(self):
+        fake_user = Setup_Class.setupUser(self)
+        form = GroupForm(data={'group_name' : "groupname", 'topic_course' : "course", 'groupme_option' : True, 'members' : {fake_user, fake_user}})
+        self.assertTrue(form.is_valid())
+    
+    # The user should not be able to create a group with no name
+    def test_GroupForm_invalid_name(self):
+        fake_user = Setup_Class.setupUser(self)
+        form = GroupForm(data={'group_name' : "", 'topic_course' : "course", 'groupme_option' : True, 'members' : {fake_user, fake_user}})
+        self.assertFalse(form.is_valid())
+
+    # The user should not be able to create a group with no topic
+    def test_GroupForm_invalid_topic(self):
+        fake_user = Setup_Class.setupUser(self)
+        form = GroupForm(data={'group_name' : "groupname", 'topic_course' : "", 'groupme_option' : True, 'members' : {fake_user, fake_user}})
+        self.assertFalse(form.is_valid())
+
     # The user should not be able to create a group with no members
     def test_GroupForm_invalid_member(self):
         form = GroupForm(data={'group_name' : "groupname", 'topic_course' : "course", 'groupme_option' : True, 'members' : {}})
