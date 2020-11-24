@@ -37,7 +37,7 @@ The following information will be collected from users:
 ## Homepage Features
 
 | Button | Functionality  |
-|--------------|-----------------------------------------------------|
+|:-|:-|
 | View Members | Users are able to view and search all active users  |
 | View Groups  | Users are able to view and search all active groups |
 | Create Group | Users are able to create a new group                |
